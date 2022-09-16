@@ -1,0 +1,28 @@
+{
+  "name": "safe-typed-storage",
+  "version": "0.0.0",
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/safe-typed-storage.umd.cjs",
+  "module": "./dist/safe-typed-storage.js",
+  "exports": {
+    ".": {
+      "import": "./dist/safe-typed-storage.js",
+      "require": "./dist/safe-typed-storage.umd.cjs"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "devDependencies": {
+    "typescript": "^4.6.4",
+    "vite": "^3.1.0",
+    "vitest": "^0.23.2"
+  }
+}
