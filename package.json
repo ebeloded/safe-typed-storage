@@ -16,7 +16,7 @@
   "exports": {
     ".": {
       "import": "./dist/lib.js",
-      "require": "./dist/lib.cjs"
+      "require": "./dist/lib.umd.cjs"
     },
     "./package.json": "./package.json"
   },
