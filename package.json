@@ -12,7 +12,7 @@
   ],
   "main": "./dist/lib.umd.cjs",
   "module": "./dist/lib.js",
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "import": "./dist/lib.js",
