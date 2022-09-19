@@ -48,7 +48,6 @@ function safeTypedStorage<T>(
   const persistentStorage = storage && storages[storage]
 
   function set(value: T): void {
-    console.log('set', { value })
     const memo: StoredItem<T> = {
       value,
       expires: ttl ? Date.now() + ttl : void 0,
