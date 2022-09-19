@@ -1,7 +1,7 @@
-type StorageLocation = 'localStorage' | 'sessionStorage'
+type PersistentStorage = 'localStorage' | 'sessionStorage'
 
 interface StorageOptions {
-  location?: StorageLocation
+  storage?: PersistentStorage
   ttl?: number
 }
 const isLocationAvailable = (location: 'localStorage' | 'sessionStorage') => {
@@ -17,8 +17,9 @@ const isLocationAvailable = (location: 'localStorage' | 'sessionStorage') => {
 }
 
 const isLocation = (
-  locationOrOptions: StorageLocation | StorageOptions
-): locationOrOptions is StorageLocation => typeof locationOrOptions === 'string'
+  locationOrOptions: PersistentStorage | StorageOptions
+): locationOrOptions is PersistentStorage =>
+  typeof locationOrOptions === 'string'
 
 const storages: {
   [name in 'localStorage' | 'sessionStorage']: Storage | undefined
@@ -36,15 +37,15 @@ const memoMap = new Map<string, StoredItem>()
 
 function safeTypedStorage<T>(
   key: string,
-  locationOrOptions?: StorageLocation | StorageOptions
+  locationOrOptions?: PersistentStorage | StorageOptions
 ) {
-  const { location, ttl } = locationOrOptions
+  const { storage, ttl } = locationOrOptions
     ? isLocation(locationOrOptions)
-      ? { location: locationOrOptions, ttl: void 0 }
+      ? { storage: locationOrOptions, ttl: void 0 }
       : locationOrOptions
-    : { location: void 0, ttl: void 0 }
+    : { storage: void 0, ttl: void 0 }
 
-  const storage = location && storages[location]
+  const persistentStorage = storage && storages[storage]
 
   function set(value: T): void {
     console.log('set', { value })
@@ -53,12 +54,12 @@ function safeTypedStorage<T>(
       expires: ttl ? Date.now() + ttl : void 0,
     }
     memoMap.set(key, memo)
-    storage?.setItem(key, JSON.stringify(memo))
+    persistentStorage?.setItem(key, JSON.stringify(memo))
   }
 
   function remove() {
     memoMap.delete(key)
-    storage?.removeItem(key)
+    persistentStorage?.removeItem(key)
   }
 
   function get(): T | undefined {
@@ -68,7 +69,7 @@ function safeTypedStorage<T>(
       if (!expires || expires > Date.now()) return value
     }
 
-    const itemStr = storage?.getItem(key)
+    const itemStr = persistentStorage?.getItem(key)
 
     if (!itemStr) return
 
