@@ -13,6 +13,6 @@ console.log('test2', test2.get())
 
 const test3 = safeTypedStorage('test3', 'localStorage')
 
-test3.set({ a: "'asdf'" })
+test3.set({ a: 'asdf', date: new Date() })
 
 console.log('test3', test3.get())

@@ -1,3 +1,5 @@
+import { devalue } from 'devalue'
+
 type PersistentStorage = 'localStorage' | 'sessionStorage'
 
 interface StorageOptions {
@@ -15,6 +17,9 @@ const isLocationAvailable = (location: 'localStorage' | 'sessionStorage') => {
 
   return false
 }
+
+const stringify = devalue
+const parse = <T>(v: string): T => eval(`(${v})`)
 
 const isLocation = (
   locationOrOptions: PersistentStorage | StorageOptions
@@ -53,7 +58,7 @@ function safeTypedStorage<T>(
       expires: ttl ? Date.now() + ttl : void 0,
     }
     memoMap.set(key, memo)
-    persistentStorage?.setItem(key, JSON.stringify(memo))
+    persistentStorage?.setItem(key, stringify(memo))
   }
 
   function remove() {
@@ -73,7 +78,7 @@ function safeTypedStorage<T>(
     if (!itemStr) return
 
     try {
-      const { value, expires } = JSON.parse(itemStr) as StoredItem<T>
+      const { value, expires } = parse<StoredItem<T>>(itemStr)
       if (!expires) return value
 
       if (expires > Date.now()) {
