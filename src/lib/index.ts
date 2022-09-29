@@ -1,1 +1,1 @@
-export { default as default } from './safe-typed-storage'
+export { default } from "./safe-typed-storage";

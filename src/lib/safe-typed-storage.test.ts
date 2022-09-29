@@ -1,11 +1,10 @@
-import { describe, expect, it } from 'vitest'
-import safeTypedStorage from './safe-typed-storage'
+import { describe, expect, it } from "vitest";
+import storage from "./safe-typed-storage";
 
-describe('safe-typed-storage', () => {
-  it('should work', () => {
-    const storage = safeTypedStorage<any>('test', {})
-
-    storage.set(1)
-    expect(storage.get()).toBe(1)
-  })
-})
+describe("suite", () => {
+  it("serial test", async () => {
+    const s = storage("x");
+    s.set(1);
+    expect(s.get()).toBe(1);
+  });
+});
