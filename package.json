@@ -1,6 +1,6 @@
 {
   "name": "safe-typed-storage",
-  "version": "6.0.0",
+  "version": "6.1.0",
   "scripts": {
     "dev": "vite dev",
     "build": "svelte-kit sync && svelte-package",
