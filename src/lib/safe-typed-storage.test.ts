@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import storage from "./safe-typed-storage";
+import storage from "./";
 
 describe("suite", () => {
   it("serial test", async () => {
