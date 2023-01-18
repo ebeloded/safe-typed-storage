@@ -19,17 +19,17 @@ npm install safe-typed-storage
 ## Usage
 
 ```ts
-import sts from 'safe-typed-storage'
+import sts from "safe-typed-storage";
 
 // Create a new instance of the storage
-const fooStorage = sts('FOO_KEY', { storage: 'localStorage' })
+const fooStorage = sts("FOO_KEY", { storage: "localStorage" });
 
 // Set a value
-fooStorage.set({ value: 'bar' })
+fooStorage.set({ value: "bar" });
 
 // Get a value
-fooStorage.get() // { value: 'bar' }
+fooStorage.get(); // { value: 'bar' }
 
 // Delete a value
-fooStorage.remove()
+fooStorage.remove();
 ```
