@@ -98,4 +98,8 @@ function safeTypedStorage<T>(
   };
 }
 
+safeTypedStorage.clear = () => {
+  memoMap.clear();
+};
+
 export default safeTypedStorage;
