@@ -14,7 +14,6 @@ const isLocationAvailable = (location: "localStorage" | "sessionStorage") => {
   } catch (err) {
     // Local storage is not available. Changes won't persist.
   }
-  console.warn(location + " is not available. Changes won't persist.");
 
   return false;
 };
