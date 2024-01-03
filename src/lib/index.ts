@@ -14,6 +14,7 @@ const isLocationAvailable = (location: "localStorage" | "sessionStorage") => {
   } catch (err) {
     // Local storage is not available. Changes won't persist.
   }
+  console.warn(location + " is not available. Changes won't persist.");
 
   return false;
 };
@@ -52,7 +53,7 @@ function safeTypedStorage<T>(
   function set(value: T): void {
     const memo: StoredItem<T> = {
       value,
-      expires: ttl ? Date.now() + ttl : void 0,
+      expires: typeof ttl === "number" ? Date.now() + ttl : void 0,
     };
 
     memoMap.set(key, memo);
